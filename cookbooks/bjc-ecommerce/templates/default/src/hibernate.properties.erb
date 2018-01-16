@@ -19,5 +19,7 @@ hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
 hibernate.c3p0.max_size=50
 org.hibernate.envers.track_entities_changed_in_revision=true
 hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
-hibernate.connection.url=jdbc\:mysql\://localhost\:3306/softslate
+hibernate.connection.url=jdbc\:mysql\://<%= node['bjc-ecommerce']['db-host'] %>\:3306/softslate
+hibernate.connection.username=<%= node['bjc-ecommerce']['db-user'] %>
+hibernate.connection.password=<%= node['bjc-ecommerce']['db-pass'] %>
 org.hibernate.envers.global_with_modified_flag=true

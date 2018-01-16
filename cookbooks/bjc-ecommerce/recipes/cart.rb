@@ -56,18 +56,6 @@ end
   end
 end
 
-template "#{Chef::Config['file_cache_path']}/backup.sql" do
-  action :create
-  source 'backup.sql.erb'
-  notifies :run, 'execute[restore_database_backup]', :immediately
-end
-
-execute "restore_database_backup" do
-  command "mysql -u root softslate < #{Chef::Config['file_cache_path']}/backup.sql"
-  action :nothing
-  notifies :restart, 'service[tomcat7]', :delayed
-end
-
 %w(f73e89fd.0 sdk-seller.p12 twoWay.key).each do |f|
   cookbook_file "/var/lib/tomcat7/webapps/cart/WEB-INF/conf/keys/#{f}" do
     action :create
