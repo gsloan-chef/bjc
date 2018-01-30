@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'dca_audit_baseline', git: 'https://github.com/chef-cft/bjc.git', rel: 'cookbooks/dca_audit_baseline'
+cookbook 'bjc-ecommerce', git: 'https://github.com/chef-cft/bjc.git', rel: 'cookbooks/bjc-ecommerce'

@@ -18,11 +18,11 @@ ttl: 8
 linux: ubuntu
 version: 4.2.1
 products:
-  chef: stable-13.6.4
-  chef-server: stable-12.17.5
+  chef: stable-13.7.16
+  chef-server: stable-12.17.15
   chefdk: stable-2.4.17
   compliance: stable-1.12.1
-  automate: stable-1.7.39
+  automate: stable-1.7.114
   push-jobs-server: stable-2.2.6
   manage: stable-2.5.8
 build-nodes:
