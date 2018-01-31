@@ -43,7 +43,7 @@ ssh automate 'echo "172.31.54.53  prod3" | sudo tee --append /etc/hosts'
 Write-Host -ForegroundColor Green "[6/9] Hardening Infra Nodes"
 
 Workflow infra-harden {
-  foreach -parallel ($node in @("dev1", "dev2", "stage1", "stage2", "prod1", "prod2", "prod3") )
+  foreach -parallel ($node in @("dev1", "dev2", "stage1", "stage2", "prod1", "prod2", "prod3") ) {
     ssh $node "sudo chef-client -o '''recipe[dca_demo::hardening]'''"
   }
 }

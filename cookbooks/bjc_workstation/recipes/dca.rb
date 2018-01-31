@@ -25,6 +25,11 @@ cookbook_file "#{home}\\Finish_DCA.ps1" do
   source "Finish_DCA.ps1"
 end
 
+cookbook_file "#{home}\\Start_CM.ps1" do
+  action :create
+  source "Start_CM.ps1"
+end
+
 directory "#{home}\\Documents\\WindowsPowershell\\Modules\\DCA_functions" do
   recursive true
   action :create

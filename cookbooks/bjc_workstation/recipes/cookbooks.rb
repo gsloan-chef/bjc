@@ -10,7 +10,7 @@ end
 
 git "#{Chef::Config[:file_cache_path]}/bjc" do
   repository 'https://github.com/chef-cft/bjc'
-  revision 'master'
+  revision 'rycar/cloud-migrate'
   action :sync
 end
 
