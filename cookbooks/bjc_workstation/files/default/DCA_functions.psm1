@@ -6,7 +6,7 @@ function DCA-Bootstrap-SSH {
     $recipe
   )
   Write-Output "Bootstrapping host $name into $env with recipe $cookbook::$recipe"
-  knife bootstrap $name -N $name -E $env -r "recipe[$cookbook::$recipe]" -i ~/.ssh/id_rsa -x ubuntu --sudo -y
+  knife bootstrap $name -N $name -E $env -r "'''recipe[$cookbook::$recipe]'''" -i ~/.ssh/id_rsa -x ubuntu --sudo -y
 }
 
 function DCA-Nuke-Automate {
