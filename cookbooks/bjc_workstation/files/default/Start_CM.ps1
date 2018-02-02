@@ -76,7 +76,7 @@ Write-Host -ForegroundColor Green "[10/12] Updating knife config with aws region
 Write-Host -ForegroundColor Green "[11/12] Creating new environments"
 Workflow env-create {
   foreach -parallel ($env in @("awsdev","development","staging","production")) {
-    knife enviornment create $env -d $env
+    knife environment create $env -d $env
   }
 
 }
