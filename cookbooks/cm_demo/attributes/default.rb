@@ -4,7 +4,7 @@ default['audit']['reporter'] = 'chef-server-automate'
 default['audit']['profiles'] = [
   {
     name: 'Linux Baseline',
-    compliance: 'workstation-1/cm_profile',
+    compliance: 'workstation-1/planex_validate',
   },
 ]
 
