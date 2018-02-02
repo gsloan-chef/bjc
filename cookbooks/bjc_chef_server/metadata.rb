@@ -6,7 +6,7 @@ description 'Installs/Configures bjc_chef_server'
 long_description 'Installs/Configures bjc_chef_server'
 issues_url 'https://waffle.io/chef-cft/bjc'
 source_url 'https://github.com/chef-cft/bjc'
-version '0.1.34'
+version '0.1.35'
 
 depends 'chef_server'
 depends 'apt'
