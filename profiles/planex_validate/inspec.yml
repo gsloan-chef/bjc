@@ -1,0 +1,8 @@
+name: planex_validate
+title: Planet Express Validator
+maintainer: The Authors
+copyright: The Authors
+copyright_email: you@example.com
+license: Apache-2.0
+summary: Ensure proper site functionality for Planet Express
+version: 0.1.0
