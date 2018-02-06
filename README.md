@@ -52,7 +52,7 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
 
 5. Optional: To generate CCRs quickly, double-click the 'Generate_CCRs.ps1' link on the desktop. It will trigger client runs on all nodes until closed.
 
-6. Optional: To start a DCA demo (demo script to be updated), run the 'Start_DCA' link on the desktop. This will rebootstrap the environment to prepare for the updated demo.
+6. Optional: To start a DCA demo, run either the `Start_DCA.ps1` or `Start_CM.ps1` scripts located in C:\Users\chef\ . This will rebootstrap the environment to prepare for the DCA or Cloud MIgration demos respectively.
 
 7.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 ---
