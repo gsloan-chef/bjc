@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.3.1
+
+**Updates:**
+- Powershell functions will now output the un-abstracted command they ran when complete.
+
+**Bugfixes:**
+- Fixes an issue in the build cookbook where acceptance de-provisioning fails if executed on a centos builder. Confining configs to ubuntu builders for that stage.
+
 ## 4.3.0
 
 **Updates:**
