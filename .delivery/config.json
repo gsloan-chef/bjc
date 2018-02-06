@@ -12,6 +12,9 @@
 				"platform": ["ubuntu"]
 			}, {
 				"platform": ["centos"]
+			}],
+			"provision": [{
+				"platform": ["ubuntu"]
 			}]
 		}
   },

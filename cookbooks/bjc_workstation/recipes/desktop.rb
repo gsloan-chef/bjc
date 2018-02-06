@@ -50,6 +50,12 @@ windows_shortcut "#{home}\\Desktop\\Finish_DCA.lnk" do
   description "Wrap up a DCA Demo"
 end
 
+windows_shortcut "#{home}\\Desktop\\Start_CM.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Start_CM.ps1"
+  description "Start a CM Demo"
+end
+
 # Remove EC2 shortcuts
 file "#{home}/Desktop/EC2 Feedback.website" do
   action :delete
