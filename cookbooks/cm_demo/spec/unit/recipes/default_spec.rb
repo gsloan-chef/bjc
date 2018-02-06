@@ -19,5 +19,4 @@ describe 'cm_demo::default' do
       expect { chef_run }.to_not raise_error
     end
   end
-
 end
