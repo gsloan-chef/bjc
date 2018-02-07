@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.3.2
+
+**Updates:**
+- `Start_CM.ps1` updated to auto-launch initial EC2 instance. Speeds up and simplifies demo startup.
+
 ## 4.3.1
 
 **Updates:**

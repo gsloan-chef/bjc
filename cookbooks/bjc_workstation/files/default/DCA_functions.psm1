@@ -24,7 +24,7 @@ function DCA-AWS-Create {
     $recipe
   )
   Write-Output "Running knife-ec2 to bootstrap node in $env"
-  knife ec2 server create -r "'''recipe[$cookbook::$recipe]'''" -f m4.large -E $env -S chef_demo_2x --image ami-70b67d10 --security-group-ids sg-1cea9178 -T instance-type=DCA-kitchen-ec2 -i ~/.ssh/id_rsa --user-data C:\Users\chef\ubuntu_user_data -x ubuntu --use-iam-profile
+  knife ec2 server create -r "'''recipe[$cookbook::$recipe]'''" -f m4.large -E $env -S chef_demo_2x --image ami-70b67d10 --security-group-id sg-1cea9178 -T instance-type=DCA-kitchen-ec2 -i ~/.ssh/id_rsa --user-data C:\Users\chef\ubuntu_user_data -x ubuntu --use-iam-profile
   Write-Output "Create Complete!"
   Write-Output "Command: knife ec2 server create -r `"'''recipe[$cookbook::$recipe]'''`" -f m4.large -E $env -S chef_demo_2x --image ami-70b67d10 --security-group-ids sg-1cea9178 -T instance-type=DCA-kitchen-ec2 -i ~/.ssh/id_rsa --user-data C:\Users\chef\ubuntu_user_data -x ubuntu --use-iam-profile"
 }
