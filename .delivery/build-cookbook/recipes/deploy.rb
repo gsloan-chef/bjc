@@ -26,46 +26,43 @@ end
 # This part runs only in 'Acceptance'.  Stand up a demo for testing.
 if ['acceptance'].include?(node['delivery']['change']['stage'])
   workspace = "#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/acceptance/deploy/repo"
-  # Only build if we have changed cookbooks.
-  if changed_cookbooks.any?
-    # Copy keys into the packer directory.  Not sure this is necessary here.
-    execute "copy-packer-keys" do
-      command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys --strip-components 1"
-      # Disabled because it crashes Automate
-      # live_stream true
-      cwd workspace
-      action :run
-    end
+  # Copy keys into the packer directory.  Not sure this is necessary here.
+  execute "copy-packer-keys" do
+    command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys --strip-components 1"
+    # Disabled because it crashes Automate
+    # live_stream true
+    cwd workspace
+    action :run
+  end
 
-    # Fetch the bjc-demo.json that was created in the last successful build
-    remote_file "#{workspace}/stacks/bjc-demo.json" do
-      source "https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json"
+  # Fetch the bjc-demo.json that was created in the last successful build
+  remote_file "#{workspace}/stacks/bjc-demo.json" do
+    source "https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json"
+    action :create
+  end
+
+  %w(deploy).each do |s|
+    template "#{workflow_workspace}/wombat_#{s}.sh" do
+      source "wombat_#{s}.sh.erb"
+      mode '0755'
+      variables(:cloud => cloud)
       action :create
     end
-
-    %w(deploy).each do |s|
-      template "#{workflow_workspace}/wombat_#{s}.sh" do
-        source "wombat_#{s}.sh.erb"
-        mode '0755'
-        variables(:cloud => cloud)
-        action :create
-      end
-    end
-    # Use this wrapper script to stand up the demo.
-    execute "Deploy Acceptance Stack in #{cloud}" do
-      command "#{workflow_workspace}/wombat_deploy.sh"
-      cwd workspace
-      # Disabled because it crashes Automate
-      #live_stream true
-      action :run
-    end
+  end
+  # Use this wrapper script to stand up the demo.
+  execute "Deploy Acceptance Stack in #{cloud}" do
+    command "#{workflow_workspace}/wombat_deploy.sh"
+    cwd workspace
+    # Disabled because it crashes Automate
+    #live_stream true
+    action :run
   end
 end
 
 # This part only runs in 'Delivered'. Publish the new json to S3.
 if ['delivered'].include?(node['delivery']['change']['stage'])
 
-  workspace = "#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/delivered/deploy/repo" 
+  workspace = "#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/delivered/deploy/repo"
 
   remote_file "#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json" do
     action :create
