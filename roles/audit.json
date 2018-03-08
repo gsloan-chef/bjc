@@ -1,0 +1,14 @@
+{
+  "name": "audit",
+  "description": "Role for executing corporate auditing baseline against all nodes",
+  "override_attributes": {
+    "audit": {
+      "fetcher": "chef-server",
+      "reporter": "chef-server-automate",
+      "inspec_version": "1.51.0"
+    }
+  },
+  "run_list": [
+    "recipe[audit-wrapper]"
+  ]
+}

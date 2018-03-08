@@ -1,0 +1,13 @@
+{
+  "name": "base",
+  "description": "Baseline configuration requirements",
+  "override_attributes": {
+    "chef_client": {
+      "interval": 120,
+      "splay": 30
+    }
+  },
+  "run_list": [
+    "recipe[chef-client]"
+  ]
+}

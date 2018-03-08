@@ -1,0 +1,20 @@
+{
+  "name": "audit_tomcat",
+  "description": "Role adding Chef Compliance scans for Tomcat",
+  "default_attributes": {
+    "audit": {
+      "reporter": "chef-server-automate",
+      "inspec_version": "1.25.1",
+      "insecure": true,
+      "profiles": [
+        {
+          "name": "cis-apachetomcat-8.0-level1",
+          "compliance": "delivery/cis-apachetomcat-8.0-level1"
+        }
+      ]
+    }
+  },
+  "run_list": [
+    "recipe[audit::default]"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "push-jobs",
+  "description": "Sets up push jobss",
+  "override_attributes": {
+    "push_jobs": {
+      "allow_unencrypted": true,
+      "package_url": "https://packages.chef.io/repos/yum/stable/el/7/x86_64/push-jobs-client-2.2.0-1.el7.x86_64.rpm",
+      "package_checksum": "d3f1b2ae728c"
+    }
+  },
+  "run_list": [
+    "recipe[push-jobs]"
+  ]
+}
