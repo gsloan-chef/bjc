@@ -26,7 +26,7 @@ node.default['packer']['version'] = '1.1.0'
 include_recipe 'sbp_packer'
 
 chef_gem 'wombat-cli' do
-  version '0.6.1' # until we migrate to OWCA that supports ChefDK 2.x
+  version '0.6.2' 
 end
 
 chef_gem 'aws-sdk'
