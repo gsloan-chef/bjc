@@ -1,0 +1,43 @@
+{
+  "name": "emea_demo_remediation",
+  "description": "Wrapper cookbook for SA demo remediation",
+  "long_description": "Provides a wrapper cookbook to be used in the EMEA SA Compliance demo. This cookbook remediates Windows and Linux servers by inheriting the windows and OS hardening cookbooks.",
+  "maintainer": "Joe Gardiner",
+  "maintainer_email": "joe@chef.io",
+  "license": "all_rights",
+  "platforms": {
+  },
+  "dependencies": {
+    "os-hardening": ">= 0.0.0",
+    "windows-hardening": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.4",
+  "source_url": "",
+  "issues_url": "",
+  "privacy": false,
+  "chef_versions": [
+
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+
+  ]
+}

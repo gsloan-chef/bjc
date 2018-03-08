@@ -1,0 +1,46 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  # You may wish to disable always updating cookbooks in CI or other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+  - name: windows-2012R2
+    driver_config:
+      box: mwrock/Windows2012R2
+
+suites:
+  - name: linux
+    run_list:
+      - recipe[emea_demo_remediation::default]
+    verifier:
+      inspec_tests:
+        - name: linux-baseline
+          git: https://github.com/dev-sec/linux-baseline.git
+    attributes:
+    excludes:
+      - windows-2012R2
+
+  - name: windows
+    run_list:
+      - recipe[emea_demo_remediation::default]
+    verifier:
+      inspec_tests:
+        - name: windows-baseline
+          git: https://github.com/dev-sec/windows-baseline.git
+    attributes:
+      security_policy:
+        rights:
+          SeNetworkLogonRight: '*S-1-1-0, *S-1-5-32-544, *S-1-5-32-545, *S-1-5-32-551'
+          SeRemoteInteractiveLogonRight: '*S-1-1-0, *S-1-5-32-544, *S-1-5-32-545, *S-1-5-32-551'
+    excludes:
+      - ubuntu-14.04

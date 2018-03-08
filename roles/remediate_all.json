@@ -1,0 +1,7 @@
+{
+  "name": "remediate_all",
+  "description": "Role for running remediation cookbooks",
+  "run_list": [
+    "recipe[emea_demo_remediation]"
+  ]
+}

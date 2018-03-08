@@ -10,7 +10,7 @@ package 'unzip'
 package 'git'
 include_recipe 'build-essential'
 
-%w(.chef cookbooks).each do |structure|
+%w(.chef cookbooks roles).each do |structure|
   directory "#{home}/#{structure}"
 end
 
@@ -30,15 +30,7 @@ git "#{Chef::Config[:file_cache_path]}/bjc" do
   action :sync
 end
 
-%w(
-  bjc-ecommerce
-  bjc_bass
-  dca_demo
-  dca_audit_baseline
-  dca_hardening_linux
-  dca_hardening_windows
-  cm_demo
-).each do |cookbook|
+node['bjc_chef_server']['cookbooks'].each do |cookbook|
   execute "berks install #{cookbook}" do
     cwd "#{Chef::Config[:file_cache_path]}/bjc/cookbooks/#{cookbook}"
     command '/opt/opscode/embedded/bin/berks install'
