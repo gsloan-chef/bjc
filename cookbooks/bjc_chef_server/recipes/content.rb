@@ -43,3 +43,9 @@ node['bjc_chef_server']['cookbooks'].each do |cookbook|
     action :run
   end
 end
+
+execute "knife upload roles" do
+  cwd "#{Chef::Config[:file_cache_path]}/bjc"
+  command '/opt/opscode/embedded/bin/knife upload roles --chef-repo-path .'
+  action :run
+end
