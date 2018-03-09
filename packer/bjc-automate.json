@@ -33,7 +33,7 @@
     "org": "marsupials",
     "workstations": "1",
     "ssh_username": "ubuntu",
-    "prod_deploy": "{{env `BJC_Prod`}}",
+    "prod_deploy": "{{env `BJC_PROD`}}",
     "ttl": "24"
   },
 

@@ -34,7 +34,7 @@
     "push-jobs-server": "stable-latest",
     "ssh_username": "ubuntu",
     "workstations": "1",
-    "prod_deploy": "{{env `BJC_Prod`}}",
+    "prod_deploy": "{{env `BJC_PROD`}}",
     "ttl": "24"
   },
 

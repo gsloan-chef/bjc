@@ -32,7 +32,7 @@
     "winrm_username": "Administrator",
     "workstation-number": "1",
     "workstations": "1",
-    "prod_deploy": "{{env `BJC_Prod`}}",
+    "prod_deploy": "{{env `BJC_PROD`}}",
     "ttl": "24"
   },
 

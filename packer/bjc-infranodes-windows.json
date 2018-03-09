@@ -33,7 +33,7 @@
     "winrm_password": "RL9@T40BTmXh",
     "winrm_username": "Administrator",
     "workstations": "1",
-    "prod_deploy": "{{env `BJC_Prod`}}",
+    "prod_deploy": "{{env `BJC_PROD`}}",
     "ttl": "24"
   },
 
