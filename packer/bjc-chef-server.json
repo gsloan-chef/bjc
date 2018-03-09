@@ -4,6 +4,7 @@
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "aws_region": "{{env `AWS_REGION`}}",
     "aws_source_ami": "ami-8e0b9499",
+    "aws_ami_regions": "{{env `AWS_AMI_REGIONS`}}",
     "azure_client_id": "{{env `AZURE_CLIENT_ID`}}",
     "azure_tenant_id": "{{env `AZURE_TENANT_ID`}}",
     "azure_client_secret": "{{env `AZURE_CLIENT_SECRET`}}",
@@ -32,14 +33,16 @@
     "org": "marsupials",
     "push-jobs-server": "stable-latest",
     "ssh_username": "ubuntu",
-    "workstations": "1"
+    "workstations": "1",
+    "prod_deploy": "{{env `BJC_Prod`}}",
+    "ttl": "24"
   },
 
   "builders": [
     { "type": "amazon-ebs",
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
-      "ami_regions": ["eu-west-1", "eu-west-2", "ap-southeast-1", "ap-southeast-2"],
+      "ami_regions": "{{user `aws_ami_regions`}}",
       "region": "{{user `aws_region`}}",
       "source_ami": "{{user `aws_source_ami`}}",
       "instance_type": "m4.large",
@@ -47,7 +50,13 @@
       "associate_public_ip_address": true,
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_pty" : true,
-      "ami_name": "bjc-chef-{{timestamp}}"
+      "ami_name": "bjc-chef-{{timestamp}}",
+      "tags": {
+        "Image_Type": "bjc-infra",
+        "Image_Role": "Chef Server",
+        "Production": "{{user `prod_deploy`}}",
+        "TTL": "{{user `ttl`}}"
+      }
     },
     {
       "type": "azure-arm",

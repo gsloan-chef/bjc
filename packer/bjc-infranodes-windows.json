@@ -4,6 +4,7 @@
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "aws_region": "{{env `AWS_REGION`}}",
     "aws_source_ami": "ami-47897a3f",
+    "aws_ami_regions": "{{env `AWS_AMI_REGIONS`}}",
     "azure_client_id": "{{env `AZURE_CLIENT_ID`}}",
     "azure_tenant_id": "{{env `AZURE_TENANT_ID`}}",
     "azure_client_secret": "{{env `AZURE_CLIENT_SECRET`}}",
@@ -31,7 +32,9 @@
     "ssh_username": "ubuntu",
     "winrm_password": "RL9@T40BTmXh",
     "winrm_username": "Administrator",
-    "workstations": "1"
+    "workstations": "1",
+    "prod_deploy": "{{env `BJC_Prod`}}",
+    "ttl": "24"
   },
 
   "builders": [
@@ -39,7 +42,7 @@
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "{{user `aws_region`}}",
-      "ami_regions": ["eu-west-1", "eu-west-2", "ap-southeast-1", "ap-southeast-2"],
+      "ami_regions": "{{user `aws_ami_regions`}}",
       "source_ami": "{{user `aws_source_ami`}}",
       "instance_type": "m4.large",
       "ebs_optimized": true,
@@ -49,7 +52,13 @@
       "winrm_username": "{{user `winrm_username`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "user_data_file": "{{template_dir}}/scripts/bootstrap-aws.txt",
-      "ami_name": "bjc-infranode-windows-{{user `node-name`}}-{{timestamp}}"
+      "ami_name": "bjc-infranode-windows-{{user `node-name`}}-{{timestamp}}",
+      "tags": {
+        "Image_Type": "bjc-infra",
+        "Image_Role": "Windows Node",
+        "Production": "{{user `prod_deploy`}}",
+        "TTL": "{{user `ttl`}}"
+      }
     },
     {
       "type": "azure-arm",
