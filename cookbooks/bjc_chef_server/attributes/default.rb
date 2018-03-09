@@ -5,5 +5,6 @@ default['bjc_chef_server']['cookbooks'] = [
   'dca_audit_baseline',
   'dca_hardening_linux',
   'dca_hardening_windows',
-  'cm_demo'
+  'cm_demo',
+  'emea_demo_remediation'
 ]
