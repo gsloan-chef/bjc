@@ -3,6 +3,7 @@
     "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "aws_region": "{{env `AWS_REGION`}}",
+    "aws_ami_regions": "{{env `AWS_AMI_REGIONS`}}",
     "aws_source_ami": "ami-8e0b9499",
     "azure_client_id": "{{env `AZURE_CLIENT_ID`}}",
     "azure_tenant_id": "{{env `AZURE_TENANT_ID`}}",
@@ -30,7 +31,9 @@
     "node-name": "acceptance",
     "org": "marsupials",
     "ssh_username": "ubuntu",
-    "workstations": "1"
+    "workstations": "1",
+    "prod_deploy": "{{env `BJC_PROD`}}",
+    "ttl": "24"
   },
 
   "builders": [
@@ -38,14 +41,20 @@
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "{{user `aws_region`}}",
-      "ami_regions": ["eu-west-1", "eu-west-2", "ap-southeast-1", "ap-southeast-2"],
+      "ami_regions": "{{user `aws_ami_regions`}}",
       "source_ami": "{{user `aws_source_ami`}}",
       "instance_type": "t2.medium",
       "communicator": "ssh",
       "associate_public_ip_address": true,
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_pty" : true,
-      "ami_name": "bjc-infranode-{{user `node-name`}}-{{timestamp}}"
+      "ami_name": "bjc-infranode-{{user `node-name`}}-{{timestamp}}",
+      "tags": {
+        "Image_Type": "bjc-infra",
+        "Image_Role": "Linux Node",
+        "Production": "{{user `prod_deploy`}}",
+        "TTL": "{{user `ttl`}}"
+      }
     },
     {
       "type": "azure-arm",
