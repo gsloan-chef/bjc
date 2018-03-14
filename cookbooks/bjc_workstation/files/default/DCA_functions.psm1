@@ -81,3 +81,20 @@ function DCA-Update-Nodes {
   Write-Output "Command1: knife node run_list add NODE_NAME `"'''recipe[$cookbook::$recipe]'''`""
   Write-Output "Command2: knife ssh `"chef_environment:$env`" 'sudo chef-client'"
 }
+
+function DCA-Apply-Role {
+  param(
+    $role
+  )
+
+  Write-Output "Updating nodes with $role role."
+  foreach( $node in ` knife node list ` ) {
+    knife node run_list add $node "'''role[$role]'''"
+  }
+  Write-Output "Converging all nodes"
+  knife ssh "*:*" 'sudo chef-client'
+
+  Write-Output "Updates Complete!"
+  Write-Output "Command1: knife node run_list add NODE_NAME `"'''role[$role]'''`""
+  Write-Output "Command2: knife ssh `"*:*`" 'sudo chef-client'"
+}

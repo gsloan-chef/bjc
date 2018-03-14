@@ -8,6 +8,6 @@ directory "#{home}/.berkshelf"
 
 file "#{home}/.berkshelf/config.json" do
   content <<-EOS
-{"ssl": {"verify": false}}
+  {"ssl": {"verify": false}}
   EOS
 end
