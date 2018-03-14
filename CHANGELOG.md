@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.3.11
+- Updated partner accounts for auto-publish.
+
+## 4.3.10
+- Updates to community cookbooks metadata to pull in habitat
+- Updates to Powershell functions to enable adding roles to nodes
+
+## 4.3.9
+- Adds audit-wrapper cookbook to the Chef Server
+- MVP release of AMI tagging
+- Updated templates to only export AMIs on pipeline builds
+- Updates Automate to 1.8.3
+
+## 4.3.7
+- Adds the audit-wrapper cookbook to the repo
+- Uploads additional roles and cookboks to the Chef Server
+- Conditional build behavior removed from build cookbook. All changes will now result in a full stack build.
+- ChefDK 2.x update on workstation
+- Wombat gem version pinning update to support ChefDK 2
+
 ## 4.3.2
 
 **Updates:**
