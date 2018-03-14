@@ -7,6 +7,9 @@ long_description 'Installs/Configures bjc_community'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 depends 'chef-client'
+depends 'habitat'
+
+
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
 # uploaded to a Supermarket.
