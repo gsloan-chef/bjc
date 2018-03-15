@@ -23,16 +23,13 @@ verifier:
   name: inspec
 
 platforms:
-  - name: windows-2012r2
-    # driver_config:
-      # image_id: ami-8d0c07f4
   - name: windows-2016
     # driver_config:
       # image_id: ami-48b4bf31
 
 transport:
   ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %>
-
+  
 suites:
   - name: default
     run_list:

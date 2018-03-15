@@ -15,9 +15,6 @@ verifier:
   name: inspec
 
 platforms:
-  - name: windows-2012r2
-    driver_config:
-      box: mwrock/Windows2012R2
   - name: windows-2016
     driver_config:
       box: mwrock/Windows2016
