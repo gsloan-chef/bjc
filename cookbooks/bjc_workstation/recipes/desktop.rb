@@ -53,7 +53,13 @@ end
 windows_shortcut "#{home}\\Desktop\\Start_CM.lnk" do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Start_CM.ps1"
-  description "Start a CM Demo"
+  description "Start a CM Demo in AWS"
+end
+
+windows_shortcut "#{home}\\Desktop\\Start_Azure_CM.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Start_Azure_CM.ps1"
+  description "Start a CM Demo in Azure"
 end
 
 # Remove EC2 shortcuts
