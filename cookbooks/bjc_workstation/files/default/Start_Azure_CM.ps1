@@ -121,7 +121,7 @@ Write-Host -ForegroundColor Green "[13/15] Launching initial AzureRM instance"
 
 
 $azurenodes = 0
-while($azureup -eq 0){
+while($azurenodes -eq 0){
   "Waiting for Azure Instance..."
   Start-Sleep 10
   $azurenodes = knife search node 'chef_environment:azuredev' -i | wc -l
