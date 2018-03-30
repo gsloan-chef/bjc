@@ -34,7 +34,8 @@
     "ssh_username": "ubuntu",
     "workstations": "1",
     "prod_deploy": "{{env `BJC_PROD`}}",
-    "ttl": "24"
+    "ttl": "24",
+    "wombat_ver": "unset"
   },
 
   "builders": [
@@ -52,10 +53,11 @@
       "ssh_pty" : true,
       "ami_name": "bjc-build-node-{{user `node-number`}}-{{timestamp}}",
       "tags": {
-        "Image_Type": "bjc-infra",
-        "Image_Role": "Build Node",
-        "Production": "{{user `prod_deploy`}}",
-        "TTL": "{{user `ttl`}}"
+        "X-Image-Type": "bjc-infra",
+        "X-Image-Role": "Build Node",
+        "X-Production": "{{user `prod_deploy`}}",
+        "X-TTL": "{{user `ttl`}}",
+        "X-Demo-Version": "{{user `wombat_ver`}}"
       }
     },
     {

@@ -33,7 +33,8 @@
     "workstation-number": "1",
     "workstations": "1",
     "prod_deploy": "{{env `BJC_PROD`}}",
-    "ttl": "24"
+    "ttl": "24",
+    "wombat_ver": "unset"
   },
 
   "builders": [
@@ -53,10 +54,11 @@
       "user_data_file": "{{template_dir}}/scripts/bootstrap-aws.txt",
       "ami_name": "workstation-{{user `workstation-number`}}-{{timestamp}}",
       "tags": {
-        "Image_Type": "bjc-infra",
-        "Image_Role": "Windows Workstation",
-        "Production": "{{user `prod_deploy`}}",
-        "TTL": "{{user `ttl`}}"
+        "X-Image-Type": "bjc-infra",
+        "X-Image-Role": "Windows Workstation",
+        "X-Production": "{{user `prod_deploy`}}",
+        "X-TTL": "{{user `ttl`}}",
+        "X-Demo-Version": "{{user `wombat_ver`}}"
       }
     },
     {

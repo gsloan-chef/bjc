@@ -26,7 +26,7 @@ node.default['packer']['version'] = '1.1.0'
 include_recipe 'sbp_packer'
 
 chef_gem 'wombat-cli' do
-  version '0.6.2' 
+  version '0.7.3' 
 end
 
 chef_gem 'aws-sdk'
