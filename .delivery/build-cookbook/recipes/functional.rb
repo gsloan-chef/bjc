@@ -4,25 +4,37 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-# How does this work?  The bjc_compliance default recipe contains a resource
-# to clone the BJC git repo (so we can get all the inspec profiles).  Once
-# all the inspec profiles for the BJC components are on the compliance
-# server, we can run remote scans against a stack by ssh-ing into the
-# compliance box and kicking off `inspec exec` commands.  The wrapper script
-# shown below contains the commands to run inspec against our machines.
+stack_region = 'us-west-2'
+stack_name = 'acceptance-bjc-demo'
 
-
-# Run inspec tests on the machines in our environment
 if ['acceptance'].include?(node['delivery']['change']['stage'])
   ruby_block 'Waiting for Acceptance stack to be ready...' do
     block do
       sleep 120
     end
   end
-  execute 'Run inspec tests' do
-    command "#{workflow_workspace}/inspec_tests.sh"
-    cwd workflow_workspace
-    live_stream true
-    action :run
+
+  automate_ip = get_public_ip(stack_region, stack_name, 'Automate')
+
+  delivery_inspec automate_ip.to_s do
+    infra_node automate_ip.to_s
+    inspec_test_path '/cookbooks/bjc_automate/test/integration/default'
+    os 'linux'
+  end
+
+  chef_ip = get_public_ip(stack_region, stack_name, 'Chef')
+
+  delivery_inspec chef_ip.to_s do
+    infra_node chef_ip.to_s
+    inspec_test_path '/cookbooks/bjc_chef_server/test/integration/default'
+    os 'linux'
+  end
+
+  windows_ip = get_public_ip(stack_region, stack_name, 'WindowsWorkstation1')
+
+  delivery_inspec windows_ip.to_s do
+    infra_node windows_ip.to_s
+    inspec_test_path '/cookbooks/bjc_workstation/test/integration/default'
+    os 'windows'
   end
 end
