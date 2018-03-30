@@ -26,7 +26,7 @@ node.default['packer']['version'] = '1.1.0'
 include_recipe 'sbp_packer'
 
 chef_gem 'wombat-cli' do
-  version '0.7.3' 
+  version '0.7.3'
 end
 
 chef_gem 'aws-sdk'
@@ -41,12 +41,6 @@ end
 
 chef_gem 'http-cookie' do
   version '1.0.0'
-end
-
-template "#{workflow_workspace}/inspec_tests.sh" do
-  action :create
-  source 'inspec_tests.sh.erb'
-  mode '0755'
 end
 
 package 'awscli'
