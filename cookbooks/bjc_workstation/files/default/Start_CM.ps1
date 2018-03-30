@@ -84,7 +84,7 @@ Write-Host -ForegroundColor Green "[11/13] Launching initial EC2 instance"
 & C:\tools\cmder\vendor\conemu-maximus5\ConEmu.exe /cmd "knife ec2 server create -f m4.large -E awsdev -S chef_demo_2x --image ami-70b67d10 --security-group-id sg-1cea9178 -T instance-type=DCA-kitchen-ec2 -i ~/.ssh/id_rsa --user-data C:\Users\chef\ubuntu_user_data -x ubuntu --use-iam-profile" -cur_console:c1
 
 $awsnodes = 0
-while($awsup -eq 0){
+while($awsnodes -eq 0){
   "Waiting for AWS Instance..."
   Start-Sleep 10
   $awsnodes = knife search node 'chef_environment:awsdev' -i | wc -l
@@ -101,4 +101,3 @@ start-process "chrome.exe" "https://prod1/cart",'--profile-directory="Default"'
 start-process "chrome.exe" "https://dev1/cart",'--profile-directory="Default"'
 
 & C:\tools\cmder\Cmder.exe
-

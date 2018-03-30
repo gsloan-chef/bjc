@@ -29,6 +29,19 @@ function DCA-AWS-Create {
   Write-Output "Command: knife ec2 server create -r `"'''recipe[$cookbook::$recipe]'''`" -f m4.large -E $env -S chef_demo_2x --image ami-70b67d10 --security-group-ids sg-1cea9178 -T instance-type=DCA-kitchen-ec2 -i ~/.ssh/id_rsa --user-data C:\Users\chef\ubuntu_user_data -x ubuntu --use-iam-profile"
 }
 
+function DCA-Azure-Create {
+  param (
+    $env,
+    $cookbook,
+    $recipe,
+    $name
+  )
+  Write-Output "Running knife-azurerm to bootstrap node in $env"
+  knife azurerm server create -r "'''recipe[$cookbook::$recipe]'''" -E azuredev --azure-resource-group-name cm_azure_demo --azure-vm-name $name.Substring(0,9).ToLower() --azure-service-location 'westus' --azure-image-os-type ubuntu --azure-image-reference-sku '14.04.2-LTS' --ssh-user ubuntu --ssh-password C0d3C@n! --azure-vm-size Small --no-node-verify-api-cert --node-ssl-verify-mode none -c /Users/chef/knife.rb
+  Write-Output "Create Complete!"
+  Write-Output "Command: knife azurerm server create -r "'''recipe[$cookbook::$recipe]'''" -E azuredev --azure-resource-group-name cm_azure_demo --azure-vm-name $name.Substring(0,9).ToLower() --azure-service-location 'westus' --azure-image-os-type ubuntu --azure-image-reference-sku '14.04.2-LTS' --ssh-user ubuntu --ssh-password C0d3C@n! --azure-vm-size Small --no-node-verify-api-cert --node-ssl-verify-mode none -c /Users/chef/knife.rb"
+}
+
 function Update-RunLists {
     param (
         $env,
