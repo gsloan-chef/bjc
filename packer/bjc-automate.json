@@ -34,7 +34,8 @@
     "workstations": "1",
     "ssh_username": "ubuntu",
     "prod_deploy": "{{env `BJC_PROD`}}",
-    "ttl": "24"
+    "ttl": "24",
+    "wombat_ver": "unset"
   },
 
   "builders": [
@@ -52,10 +53,11 @@
       "ssh_pty" : true,
       "ami_name": "bjc-automate-{{timestamp}}",
       "tags": {
-        "Image_Type": "bjc-infra",
-        "Image_Role": "Chef Automate",
-        "Production": "{{user `prod_deploy`}}",
-        "TTL": "{{user `ttl`}}"
+        "X-Image-Type": "bjc-infra",
+        "X-Image-Role": "Chef Automate",
+        "X-Production": "{{user `prod_deploy`}}",
+        "X-TTL": "{{user `ttl`}}",
+        "X-Demo-Version": "{{user `wombat_ver`}}"
       }
     },
     {

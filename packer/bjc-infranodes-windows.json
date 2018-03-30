@@ -34,7 +34,8 @@
     "winrm_username": "Administrator",
     "workstations": "1",
     "prod_deploy": "{{env `BJC_PROD`}}",
-    "ttl": "24"
+    "ttl": "24",
+    "wombat_ver": "unset"
   },
 
   "builders": [
@@ -54,10 +55,11 @@
       "user_data_file": "{{template_dir}}/scripts/bootstrap-aws.txt",
       "ami_name": "bjc-infranode-windows-{{user `node-name`}}-{{timestamp}}",
       "tags": {
-        "Image_Type": "bjc-infra",
-        "Image_Role": "Windows Node",
-        "Production": "{{user `prod_deploy`}}",
-        "TTL": "{{user `ttl`}}"
+        "X-Image-Type": "bjc-infra",
+        "X-Image-Role": "Windows Node",
+        "X-Production": "{{user `prod_deploy`}}",
+        "X-TTL": "{{user `ttl`}}",
+        "X-Demo-Version": "{{user `wombat_ver`}}"
       }
     },
     {
