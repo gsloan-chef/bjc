@@ -14,13 +14,18 @@
 #
 # author: Sean Carolan
 
-control 'bjc-listenports' do
-  title 'RDP is listening on port 3389'
-  describe port(3389) do
-    it { should be_listening }
-    its('processes') {should include 'TermService'}
+rdp_ports = %w[3389 443]
+
+control 'bjc-rdp-ports' do
+  title "RDP is listening on ports #{rdp_ports}"
+  rdp_ports.each do |rdp_port|
+    describe port(rdp_port) do
+      it { should be_listening }
+      its('processes') {should include 'TermService'}
+    end
   end
 end
+
 
 control 'bjc-packages' do
   title 'Required packages are installed'
