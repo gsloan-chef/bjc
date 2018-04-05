@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.4.5
+- Update build cookbook to validate that CHANGELOG.md and demo version have been changed during Verify per [\#676](https://github.com/chef-cft/bjc/issues/676)
+
 ## 4.4.4
 - Allows RDP to be reached over port 443 on workstation per [\#422](https://github.com/chef-cft/bjc/issues/422)
 
