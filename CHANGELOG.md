@@ -1,5 +1,26 @@
 # Change Log
 
+## 4.4.5
+- Update build cookbook to validate that CHANGELOG.md and demo version have been changed during Verify per [\#676](https://github.com/chef-cft/bjc/issues/676)
+
+## 4.4.4
+- Allows RDP to be reached over port 443 on workstation per [\#422](https://github.com/chef-cft/bjc/issues/422)
+
+## 4.4.3
+- Functional tests executed on build nodes in promotion pipeline
+- Allow inbound WinRM in CloudFormation template
+
+## 4.4.2
+- Updated tagging standards for Stacks & AMIs
+
+## 4.4.1
+- MVP release of Azure Cloud Migration startup script
+
+## 4.3.12
+- Updated partner accounts
+- Removed windows 2012-r2 workstation support
+- Removed "visibility" bookmark from Chrome
+
 ## 4.3.11
 - Updated partner accounts for auto-publish.
 
