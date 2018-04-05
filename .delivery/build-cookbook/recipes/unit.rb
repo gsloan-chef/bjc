@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-raise 'You must update CHANGELOG.md before your change can be promoted!' if !changed_cookbooks.include?("CHANGELOG.md")
+raise 'You must update CHANGELOG.md before your change can be promoted!' if !changed_files.include?("CHANGELOG.md")
 
 change_demo_ver = YAML.load_file("#{workflow_workspace_repo}/wombat.yml")['version']
 master_wombat_yml = shell_out!('git show master/wombat.yml')
