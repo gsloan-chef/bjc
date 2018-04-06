@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.4.6
+
+**Bugfixes**
+- Update verification logic to only validate version bump in wombat.yml in Verify. Change will have already been merged to master when Unit is re-run at Build.
+
 ## 4.4.5
 - Update build cookbook to validate that CHANGELOG.md and demo version have been changed during Verify per [\#676](https://github.com/chef-cft/bjc/issues/676)
 
