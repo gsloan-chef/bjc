@@ -44,11 +44,6 @@
       "Default": "<%= @chef_server_ami %>",
       "Description": "AMI ID for the Chef Server"
     },
-    "ComplianceAMI": {
-      "Type": "String",
-      "Default": "<%= @compliance_ami %>",
-      "Description": "AMI ID for the Compliance Server"
-    },
 <% 1.upto(@build_nodes) do |i| -%>
     "BuildNode<%= i.to_s %>AMI": {
       "Type": "String",
@@ -581,52 +576,6 @@
             "Key": "Name",
             "Value": {
               "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Automate Server" ] ]
-            }
-          }
-        ]
-      }
-    },
-    "Compliance": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "InstanceType": "c4.large",
-        "AvailabilityZone": { "Ref": "AvailabilityZone" },
-        "BlockDeviceMappings" : [
-          {
-                "DeviceName" : "/dev/sda1",
-                "Ebs" : { "VolumeSize" : "8" }
-          }
-        ] ,
-        "NetworkInterfaces": [
-          {
-            "GroupSet": [
-              {
-                "Ref": "DemoSecurityGroup"
-              }
-            ],
-            "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.12",
-            "DeviceIndex": "0",
-            "DeleteOnTermination": "true",
-            "SubnetId": {
-              "Ref": "SubnetAutomate"
-            }
-          }
-        ],
-        "KeyName": { "Ref": "KeyName" },
-        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
-             "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname compliance\n",
-             "chef-compliance-ctl reconfigure\n"]]}
-        },
-        "ImageId": {
-              "Ref": "ComplianceAMI"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Compliance Server" ] ]
             }
           }
         ]

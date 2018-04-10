@@ -1,5 +1,9 @@
 # Change Log
 
+## 4.5.0
+
+- Removed the Compliance Server from the demo stack.
+
 ## 4.4.6
 
 **Bugfixes**
