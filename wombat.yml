@@ -9,7 +9,6 @@ org: automate
 certs:
   - automate
   - chef
-  - compliance
   - ecomacceptance
   - union
   - rehearsal
@@ -21,7 +20,6 @@ products:
   chef: stable-13.8.5
   chef-server: stable-12.17.33
   chefdk: stable-2.5.3
-  compliance: stable-1.12.1
   automate: stable-1.8.3
   push-jobs-server: stable-2.2.6
   manage: stable-2.5.8
