@@ -23,7 +23,7 @@ wombat build -o <%= @builder -%> --parallel
 numamis=$(grep "<%= @searchstring -%>" ${workdir}packer/logs/* | wc -l)
 grep "<%= @searchstring -%>" ${workdir}packer/logs/*
 
-if [ $numamis -ne 11 ]; then
-  echo "Something went wrong. Only $numamis found, there should be 11."
+if [ $numamis -ne 10 ]; then
+  echo "Something went wrong. Only $numamis found, there should be 10."
   exit 1
 fi

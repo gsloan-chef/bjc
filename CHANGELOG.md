@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.5.1
+
+**Bugfixes**
+- Update build cookbook to expect 10 AMIs instead of 11, now that Compliance is not being built.
+
 ## 4.5.0
 
 - Removed the Compliance Server from the demo stack.
