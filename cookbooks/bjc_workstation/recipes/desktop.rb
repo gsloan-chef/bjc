@@ -104,7 +104,7 @@ end
 # Ensure the appropriate start-up script runs at launch
 windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\start me up.lnk' do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
-  arguments " #{home}\\#{node['bjc_workstation']['startup']}"  description "Start the Chef demo"
+  arguments " #{home}\\#{node['bjc_workstation']['startup']}" 
   description "Start the Chef demo"
   not_if { node['bjc_workstation']['startup'].empty? }
 end
