@@ -20,3 +20,5 @@ LeadingCommentSpace:
   Enabled: false
 AsciiComments:
   Enabled: false
+AmbiguousBlockAssociation:
+  Enabled: false

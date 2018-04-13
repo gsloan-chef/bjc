@@ -6,7 +6,7 @@ description 'Installs/Configures bjc_infranodes'
 long_description 'Installs/Configures bjc_infranodes'
 issues_url 'https://waffle.io/chef-cft/bjc'
 source_url 'https://github.com/chef-cft/bjc'
-version '0.1.29'
+version '0.1.30'
 
 depends 'infranodes'
 depends 'wombat'

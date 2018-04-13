@@ -4,7 +4,7 @@ maintainer_email 'emea+techcft@chef.io'
 license 'All Rights Reserved'
 description 'Attribute override wrapper of Audit cookbook'
 long_description 'Use this cookbook to allow platform assessment with relevant attribute setting until the audit cookbook supports it natively.'
-version '0.1.4'
+version '0.1.5'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are

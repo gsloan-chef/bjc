@@ -20,12 +20,6 @@ cookbook_file "#{home}\\Desktop\\email.html" do
   source "email.html"
 end
 
-windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\start me up.lnk' do
-  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
-  arguments " #{home}\\Start_Demo.ps1"
-  description "Start the Chef demo"
-end
-
 windows_shortcut "#{home}\\Desktop\\Generate_CCRs.lnk" do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Generate_CCRs.ps1"
@@ -105,4 +99,12 @@ template "#{home}/Desktop/Test_Kitchen/kitchen_linux.yml" do
   variables(
     :home => home
   )
+end
+
+# Ensure the appropriate start-up script runs at launch
+windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\start me up.lnk' do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments "#{home}\\#{node['bjc_workstation']['startup']}"
+  description "Start the Chef demo"
+  not_if { node['bjc_workstation']['startup'].empty? }
 end
