@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.5.2
+
+**Features**
+- Updated bjc_workstation cookbook to define the workstation's startup script as an attribute, allowing easier custom builds.
+
+**Bugfixes**
+- Updated the audit-wrapper cookbook to use the 'workstation-1' user instead of 'delivery'.
+
+- Updated bjc_infranodes cookbook with guards to only execute linux-specific resource if `node['platform']` isn't 'windows'
+
 ## 4.5.1
 
 **Bugfixes**

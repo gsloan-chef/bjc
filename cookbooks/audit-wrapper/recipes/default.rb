@@ -6,9 +6,9 @@
 
 case node['os']
 when 'linux'
-  node.override['audit']['profiles'] = [ {"name" => "linux-baseline", "compliance" => "delivery/linux-baseline"}]
+  node.override['audit']['profiles'] = [ {"name" => "linux-baseline", "compliance" => "workstation-1/linux-baseline"}]
 when 'windows'
-  node.override['audit']['profiles'] = [ {"name" => "windows-baseline", "compliance" => "delivery/windows-baseline"}]
+  node.override['audit']['profiles'] = [ {"name" => "windows-baseline", "compliance" => "workstation-1/windows-baseline"}]
 end
 
 include_recipe 'audit'
