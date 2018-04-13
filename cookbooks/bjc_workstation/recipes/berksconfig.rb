@@ -7,7 +7,7 @@
 directory "#{home}/.berkshelf"
 
 file "#{home}/.berkshelf/config.json" do
-  content <<-EOS
+  content <<-SSLOFF
   {"ssl": {"verify": false}}
-  EOS
+  SSLOFF
 end
