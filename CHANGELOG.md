@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.5.4
+
+**Feature:**
+- Add PowerShell launch script `./bin/build_demo.ps1`. Launch demos on Windows the same way as the Mac!
+
 ## 4.5.3
 
 **Bugfixes**
