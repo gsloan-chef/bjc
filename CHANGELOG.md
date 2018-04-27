@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.5.3
+
+**Bugfixes**
+- Add required X-Application tag to build script
+
 ## 4.5.2
 
 **Features**
