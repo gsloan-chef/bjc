@@ -2,7 +2,7 @@
 # Builds Chef Demo environment with a Cloudformation template
 
 # Usage and help
-USAGE="Usage: $0 [demo-version] [customer name or description] [your aws key name] [hours to keep the demo up] [your name] [your department] [your region]\n\nExample:\n$0 1.2.0 'Paper Street' \$AWS_KEYPAIR_NAME 4 'Tyler Durden' 'Sales' 'NA-East'"
+USAGE="Usage: $0 [demo-version] [customer name or description] [your aws key name] [hours to keep the demo up] [your name] [your department] [your region]\n\nExample:\n$0 aws-1.2.0 'Paper Street' \$AWS_KEYPAIR_NAME 4 'Tyler Durden' 'Sales' 'NA-East'"
 
 if [[ $# -ne 7 ]]; then
   echo -e $USAGE

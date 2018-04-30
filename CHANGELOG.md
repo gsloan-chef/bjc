@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.5.5
+
+**Features**
+- Clarify the usage statement for `build_demo.sh`, the cloud provider is part of the version
+
 ## 4.5.4
 
 **Feature:**
