@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.6.0
+
+**Breaking Change**
+- Shell and powershell launchers now require an additional argument for the cloud platform.  This will break any scripts based on the prior argument sets.
+
+**Features**
+- Add support for multiple cloud platforms to shell and powershell launchers
+
+**Features**
+- Clarify the usage statement for `build_demo.sh`, the cloud provider is part of the version
+
 ## 4.5.5
 
 **Features**
