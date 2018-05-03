@@ -25,20 +25,22 @@ TERMINATION_DATE="$(TZ=Etc/UTC date -j -v +$5H +'%Y-%m-%dT%H:%M:%SZ')"
 REGION=us-west-2
 
 # Here's where we create the stack
-if [ "${CLOUD}" = "aws" ]
-then
-  echo "Creating ${CLOUD} ${VERSION} demo..."
-  aws cloudformation create-stack \
-  --stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')" \
-  --capabilities CAPABILITY_IAM \
-  --region $REGION \
-  --tags Key=X-TTL,Value=${TTL} Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Customer,Value="${CUSTOMER}" Key=X-Project,Value="BJC-Demo" Key=X-Termination-Date,Value=${TERMINATION_DATE} Key=X-Application,Value="${APPLICATION}" \
-  --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${CLOUD}-${VERSION}.json \
-  --parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
-elif [ "${CLOUD}" = "azure" ]
-then
-  echo "${CLOUD} platorm support in this script is coming coon!"
-else
+case ${CLOUD} in
+  aws)
+    echo "Creating ${CLOUD} ${VERSION} demo..."
+    aws cloudformation create-stack \
+    --stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')" \
+    --capabilities CAPABILITY_IAM \
+    --region $REGION \
+    --tags Key=X-TTL,Value=${TTL} Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Customer,Value="${CUSTOMER}" Key=X-Project,Value="BJC-Demo" Key=X-Termination-Date,Value=${TERMINATION_DATE} Key=X-Application,Value="${APPLICATION}" \
+    --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${CLOUD}-${VERSION}.json \
+    --parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
+    ;;
+  azure)
+    echo "${CLOUD} platorm support in this script is coming coon!"
+    ;;
+  *)
     echo "${CLOUD} cloud platform is not currently supported"
     echo "Please submit an issue to https://github/chef-cft/bjc to request a new platform."
-fi
+  ;;
+esac
