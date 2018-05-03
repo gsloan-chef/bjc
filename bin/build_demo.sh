@@ -21,23 +21,36 @@ DEPARTMENT=$7
 APPLICATION=$8
 
 CLOUD=$(echo $CLOUD | tr '[:upper:]' '[:lower:]')
+STACK_NAME="${USER}-${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')"
 TERMINATION_DATE="$(TZ=Etc/UTC date -j -v +$5H +'%Y-%m-%dT%H:%M:%SZ')"
-REGION=us-west-2
+REGION_AWS=us-west-2
+REGION_AZURE=westus
 
 # Here's where we create the stack
+# Hat-tip to @russellseymour for the Azure bits
 case ${CLOUD} in
   aws)
     echo "Creating ${CLOUD} ${VERSION} demo..."
+
     aws cloudformation create-stack \
-    --stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')" \
+    --stack-name "${STACK_NAME}" \
     --capabilities CAPABILITY_IAM \
-    --region $REGION \
+    --`region` $REGION_AWS \
     --tags Key=X-TTL,Value=${TTL} Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Customer,Value="${CUSTOMER}" Key=X-Project,Value="BJC-Demo" Key=X-Termination-Date,Value=${TERMINATION_DATE} Key=X-Application,Value="${APPLICATION}" \
     --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${CLOUD}-${VERSION}.json \
     --parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
     ;;
   azure)
-    echo "${CLOUD} platorm support in this script is coming coon!"
+    echo "Creating ${CLOUD} ${VERSION} demo..."
+
+    az group create \
+    -l $REGION_AZURE \
+    -n "${STACK_NAME}" \
+    --tags X-TTL=${TTL} TTL=${TTL} X-Contact="${CONTACT}" X-Dept="${DEPARTMENT}" X-Customer="${CUSTOMER}" X-Project="BJC-Demo" X-Termination-Date=${TERMINATION_DATE} X-Application="${APPLICATION}"
+
+    az group deployment create \
+    -g "${STACK_NAME}" \
+    --template-uri https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${CLOUD}-${VERSION}.json
     ;;
   *)
     echo "${CLOUD} cloud platform is not currently supported"
