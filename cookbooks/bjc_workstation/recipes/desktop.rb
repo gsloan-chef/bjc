@@ -108,3 +108,9 @@ windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\s
   description "Start the Chef demo"
   not_if { node['bjc_workstation']['startup'].empty? }
 end
+
+# Leave some hints for the demonstrator
+cookbook_file "#{home}\\Desktop\\dca_demo_commands" do
+  action :create
+  source "dca_demo_commands"
+end

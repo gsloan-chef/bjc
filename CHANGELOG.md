@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.5.6
+
+**Feature:**
+- Drop a file on the desktop with DCA commands for the demonstrator to quickly reference.
+
 ## 4.5.5
 
 **Features**
