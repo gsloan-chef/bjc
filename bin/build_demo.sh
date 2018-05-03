@@ -27,7 +27,7 @@ REGION=us-west-2
 # Here's where we create the stack
 if [ "${CLOUD}" = "aws" ]
 then
-  echo "Creating ${CLOUD} version ${VERSION} demo..."
+  echo "Creating ${CLOUD} ${VERSION} demo..."
   aws cloudformation create-stack \
   --stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')" \
   --capabilities CAPABILITY_IAM \
