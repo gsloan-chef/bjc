@@ -1,0 +1,20 @@
+The most up-to-date version of the script is managed in Google Drive:
+- https://docs.google.com/document/d/1lJG3m81dHc6LFIEVCeonxSN1XH3IeFZHDwnNbge9g0A/edit?usp=sharing
+
+Automate Login:
+Username:  workstation-1
+Password:  workstation!
+
+Powershell:
+DCA-Update-Nodes dev dca_demo audit
+
+DCA_Correct link on the desktop
+
+Powershell:
+DCA-Update-Nodes dev dca_demo hardening
+
+Finish_DCA link on the desktop
+
+Powershell:
+DCA-Update-Nodes dev dca_demo install_site
+
