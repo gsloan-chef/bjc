@@ -80,6 +80,8 @@ switch ($cloud)
     az group create -l $region_azure -n "$stack_name" --tags X-TTL=$ttl X-Contact="$contact" X-Dept="$department" X-Customer="$customer" X-Project="BJC-Demo" X-Termination-Date=$termination_date X-Application="$application"
 
     az group deployment create -g "$stack_name" --template-uri https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-$cloud-$version.json
+
+    #TODO:Push tags from resource group down to all resources
   }
   default
   {

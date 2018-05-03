@@ -51,6 +51,8 @@ case ${CLOUD} in
     az group deployment create \
     -g "${STACK_NAME}" \
     --template-uri https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${CLOUD}-${VERSION}.json
+
+    #TODO:Push tags from resource group down to all resources
     ;;
   *)
     echo "${CLOUD} cloud platform is not currently supported"
