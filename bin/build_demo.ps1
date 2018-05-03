@@ -51,7 +51,8 @@ Param(
 )
 
 # Only supported in us-west-2 for now
-$region="us-west-2"
+$region_aws="us-west-2"
+$region_azure="westus"
 
 # Strip spaces from customer name
 $customer = $customer -replace '\s','-'
@@ -62,19 +63,23 @@ $termination_date = Get-Date($utc_date).AddHours($ttl)
 $utc_date = Get-Date -date $utc_date -format "yyyyMMddTHHmmssZ"
 $termination_date = Get-Date -date $termination_date -format "yyyy-MM-ddTHH:mm:ssZ"
 
+$stack_name = "$env:USERNAME-$customer-Chef-Demo-$utc_date"
+
 # Here's where we create the stack
-
-
 switch ($cloud)
 {
   'aws'
   {
     write-host "Creating $cloud $version demo..."
-    aws cloudformation create-stack --stack-name "$env:USERNAME-$customer-Chef-Demo-$utc_date" --capabilities CAPABILITY_IAM --region $region --tags Key=X-TTL,Value=$ttl Key=TTL,Value=$ttl Key=X-Contact,Value="$contact" Key=X-Dept,Value="$department" Key=X-Customer,Value="$customer" Key=X-Project,Value="BJC-Demo" Key=X-Termination-Date,Value=$termination_date Key=X-Application,Value=$location --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-$cloud-$version.json --parameters ParameterKey=KeyName,ParameterValue=$ssh_key ParameterKey=TTL,ParameterValue=$ttl
+    aws cloudformation create-stack --stack-name "$stack_name" --capabilities CAPABILITY_IAM --region $region_aws --tags Key=X-TTL,Value=$ttl Key=TTL,Value=$ttl Key=X-Contact,Value="$contact" Key=X-Dept,Value="$department" Key=X-Customer,Value="$customer" Key=X-Project,Value="BJC-Demo" Key=X-Termination-Date,Value=$termination_date Key=X-Application,Value=$location --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-$cloud-$version.json --parameters ParameterKey=KeyName,ParameterValue=$ssh_key ParameterKey=TTL,ParameterValue=$ttl
   }
   'azure'
   {
-    write-host "$cloud platorm support in this script is coming coon!"
+    write-host "Creating $cloud $version demo..."
+
+    az group create -l $region_azure -n "$stack_name" --tags X-TTL=$ttl X-Contact="$contact" X-Dept="$department" X-Customer="$customer" X-Project="BJC-Demo" X-Termination-Date=$termination_date X-Application="$application"
+
+    az group deployment create -g "$stack_name" --template-uri https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-$cloud-$version.json
   }
   default
   {
