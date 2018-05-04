@@ -35,7 +35,7 @@ case ${CLOUD} in
     aws cloudformation create-stack \
     --stack-name "${STACK_NAME}" \
     --capabilities CAPABILITY_IAM \
-    --`region` $REGION_AWS \
+    --region $REGION_AWS \
     --tags Key=X-TTL,Value=${TTL} Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Customer,Value="${CUSTOMER}" Key=X-Project,Value="BJC-Demo" Key=X-Termination-Date,Value=${TERMINATION_DATE} Key=X-Application,Value="${APPLICATION}" \
     --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${CLOUD}-${VERSION}.json \
     --parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
