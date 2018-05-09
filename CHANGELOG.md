@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.6.1
+
+**Features**
+- Renable Azure builds
+
 ## 4.6.0
 
 **Breaking Change**
@@ -11,7 +16,7 @@
 
 **Requirements**
 - Launching Azure demos requires Azure CLI 2.0+ to be installed on local workstation
--
+
 ## 4.5.6
 
 **Feature:**
