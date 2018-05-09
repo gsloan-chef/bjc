@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.6.0
+
+**Breaking Change**
+- Shell and powershell launchers now require an additional argument for the cloud platform.  This will break any scripts based on the prior argument sets.
+
+**Features**
+- Add support for multiple cloud platforms to shell and powershell launchers
+- Ability to launch Azure-based demo environments from shell and powershell launchers
+
+**Requirements**
+- Launching Azure demos requires Azure CLI 2.0+ to be installed on local workstation
+-
 ## 4.5.6
 
 **Feature:**
