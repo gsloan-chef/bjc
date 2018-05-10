@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.6.2
+
+**Bugfixes**
+- Remove all references to Compliance from ARM templates
+
 ## 4.6.1
 
 **Features**

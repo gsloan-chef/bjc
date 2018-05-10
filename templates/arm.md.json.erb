@@ -18,7 +18,7 @@
       "type": "string",
       "defaultValue": "<%= @ttl %>"
     },
-  
+
     "storageAccountName": {
       "type": "string",
       "metadata": {
@@ -45,7 +45,7 @@
 
   },
   "variables": {
-    
+
     "unique": "[uniqueString(subscription().subscriptionId, resourceGroup().id, deployment().name)]",
     "uniqueShort": "[substring(variables('unique'), 0, parameters('shortUniqueLength'))]",
 
@@ -80,12 +80,6 @@
         "automate": {
           "internal": {
             "address": "172.31.54.11",
-            "allocationMethod": "static"
-          }
-        },
-        "compliance": {
-          "internal": {
-            "address": "172.31.54.12",
             "allocationMethod": "static"
           }
         },
@@ -213,7 +207,7 @@
           "dataDisks": []
         }
       }
-    },   
+    },
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -304,7 +298,7 @@
           "dataDisks": []
         }
       }
-    },    
+    },
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -652,105 +646,6 @@
           "networkInterfaces": [
             {
               "id": "[resourceId('Microsoft.Network/networkInterfaces', 'AutomateServer-NIC')]"
-            }
-          ]
-        }
-      }
-    },
-
-    {
-      "type": "Microsoft.Network/networkInterfaces",
-      "name": "ComplianceServer-NIC",
-      "apiVersion": "2015-06-15",
-      "location": "[variables('location')]",
-      "tags": {
-        "provider": "[variables('tagvalues').provider]"
-      },
-      "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', variables('network').virtual.name)]"
-      ],
-      "properties": {
-        "ipConfigurations": [
-          {
-            "name": "ipconfig1",
-            "properties": {
-              "privateIPAllocationMethod": "[variables('network').ipAddresses.compliance.internal.allocationMethod]",
-              "privateIPAddress": "[variables('network').ipAddresses.compliance.internal.address]",
-              "subnet": {
-                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', variables('network').virtual.name), '/subnets/', variables('network').subnet.name)]"
-              }
-            }
-          }
-        ]
-      }
-    },
-
-    {
-      "type": "Microsoft.Compute/images",
-      "apiVersion": "2016-04-30-preview",
-      "name": "ComplianceServer-VM-Image",
-      "location": "[variables('location')]",
-      "tags": {
-        "provider": "[variables('tagvalues').provider]"
-      },
-      "properties": {
-        "storageProfile": {
-          "osDisk": {
-            "osType": "Linux",
-            "blobUri": "<%= @compliance_uri %>",
-            "caching": "ReadWrite",
-            "storageAccountType": "Standard_LRS"
-          },
-          "dataDisks": []
-        }
-      }
-    },
-
-    {
-      "type": "Microsoft.Compute/virtualMachines",
-      "name": "ComplianceServer-VM",
-      "apiVersion": "2016-04-30-preview",
-      "location": "[variables('location')]",
-      "tags": {
-        "provider": "[variables('tagvalues').provider]"
-      },
-      "dependsOn": [
-        "Microsoft.Network/networkInterfaces/ComplianceServer-NIC",
-        "Microsoft.Compute/images/ComplianceServer-VM-Image"
-      ],
-      "tags": {
-        "name": "[concat(parameters('demoName'), ' Compliance Server')]"
-      },
-      "properties": {
-        "hardwareProfile": {
-          "vmSize": "Standard_F4s"
-        },
-        "osProfile": {
-          "computerName": "[concat('chef-', variables('uniqueShort'))]",
-          "customData": "[base64(concat(variables('customData'), '\n\nruncmd:\n - hostnamectl set-hostname compliance\n - compliance-ctl reconfigure'))]",
-          "adminUsername": "ubuntu",
-          "adminPassword": "[parameters('adminPassword')]",
-          "linuxConfiguration": {
-            "disablePasswordAuthentication": "true",
-            "ssh": {
-              "publicKeys": [
-                {
-                  "path": "/home/ubuntu/.ssh/authorized_keys",
-                  "keyData": "<%= @public_key -%>"
-                }
-              ]
-            }
-          }
-        },
-        "storageProfile": {
-          "imageReference": {
-            "id": "[resourceId('Microsoft.Compute/images', 'ComplianceServer-VM-Image')]"
-          }
-        },
-        "networkProfile": {
-          "networkInterfaces": [
-            {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', 'ComplianceServer-NIC')]"
             }
           ]
         }
