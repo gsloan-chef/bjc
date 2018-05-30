@@ -58,6 +58,13 @@ The demo environment will provision in AWS or Azure fairly quickly, usually with
   
   ./bin/build_demo.ps1 azure 4.6.1 'RobCo' rycar_sa 4 'Nick Rycar' 'Solutions Architects' 'NA-Central'
   ```
+  
+  If you receive an error similar to the one below (even when spinning up on Azure), it means that you have selected a version of the demo that doesn't exist (or hasn't been fully published for consumption).  HINT:  `stable` always works as a version!
+  
+  ```bash
+  An error occurred (ValidationError) when calling the CreateStack operation: S3 error: The specified key does not exist.
+  ```
+  
 3.  Use the `get_workstation_ip.sh` script (Mac/Linux only for now) to get the IP of your workstation
 
   ```bash
