@@ -74,16 +74,16 @@ The demo environment will provision in AWS or Azure fairly quickly, usually with
   ```
 
 
-3.  Log onto your stack's workstation
+4.  Log onto your stack's workstation
     * Workstation credentials are pinned in #chef-demo-project slack channel.  
     * If you are not a Chef employee please contact saleseng@chef.io to get the username and password.
     * Workstation now supports RDP over HTTPS to help with access where port 3389 may be blocked.
 
-4.  Optional:  If you want to use Test Kitchen inside your demo environment, you'll need to go into the AWS control panel, select EC2, and then go into 'Key Pairs'.  Choose "Import New Key Pair" and import the chef_demo.pub file stored in this repo into the us-west-2 region of your account.  Alternatively you can simply edit the existing .kitchen.yml file inside the cookbook with any valid SSH key name in us-west-2 in your account.
+5.  Optional:  If you want to use Test Kitchen inside your demo environment, you'll need to go into the AWS control panel, select EC2, and then go into 'Key Pairs'.  Choose "Import New Key Pair" and import the chef_demo.pub file stored in this repo into the us-west-2 region of your account.  Alternatively you can simply edit the existing .kitchen.yml file inside the cookbook with any valid SSH key name in us-west-2 in your account.
 
-5. Optional: To generate CCRs quickly, double-click the 'Generate_CCRs.ps1' link on the desktop. It will trigger client runs on all nodes until closed.
+6. Optional: To generate CCRs quickly, double-click the 'Generate_CCRs.ps1' link on the desktop. It will trigger client runs on all nodes until closed.
 
-6. Optional: To start a DCA demo, run either the `Start_DCA.ps1` or `Start_CM.ps1` scripts located in C:\Users\chef\ . This will rebootstrap the environment to prepare for the DCA or Cloud MIgration demos respectively.
+7. Optional: To start a DCA demo, run either the `Start_DCA.ps1` or `Start_CM.ps1` scripts located in C:\Users\chef\ . This will rebootstrap the environment to prepare for the DCA or Cloud MIgration demos respectively.
 
-7.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
+8.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 ---
