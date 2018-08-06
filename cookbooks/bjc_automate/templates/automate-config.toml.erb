@@ -1,0 +1,119 @@
+# This is a default Chef Automate configuration file. You can run
+# 'chef-automate deploy' with this config file and it should
+# successfully create a new Chef Automate instance with default settings.
+
+[global.v1]
+  # The external fully qualified domain name.
+  # When the application is deployed you should be able to access 'https://<fqdn>/'
+  # to login.
+  fqdn = "<%= @fqdn %>"
+
+[auth_n.v1.sys.service]
+   a1_data_collector_token = "93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506"
+
+# Deployment service configuration.
+[deployment.v1]
+  [deployment.v1.svc]
+    # Habitat channel to install hartifact from.
+    # Can be 'dev', 'current', or 'acceptance'
+    channel = "current"
+    upgrade_strategy = "none"
+    deployment_type = "local"
+
+    # Load Balancer service configuration.
+[load_balancer]
+  [load_balancer.v1.sys]
+    [[load_balancer.v1.sys.frontend_tls]]
+      # The TLS certificate for the load balancer frontend.
+      cert = """-----BEGIN CERTIFICATE-----
+MIIFdjCCA16gAwIBAgIJAPpWTgflPDNPMA0GCSqGSIb3DQEBBQUAMGAxCzAJBgNV
+BAYTAlVTMRMwEQYDVQQIDApXYXNoaW5ndG9uMRAwDgYDVQQHDAdTZWF0dGxlMRYw
+FAYDVQQKDA1DaGVmIFNvZnR3YXJlMRIwEAYDVQQDDAlsb2NhbGhvc3QwHhcNMTgw
+NzE2MTY0MzAxWhcNMjgwNzEzMTY0MzAxWjBgMQswCQYDVQQGEwJVUzETMBEGA1UE
+CAwKV2FzaGluZ3RvbjEQMA4GA1UEBwwHU2VhdHRsZTEWMBQGA1UECgwNQ2hlZiBT
+b2Z0d2FyZTESMBAGA1UEAwwJbG9jYWxob3N0MIICIjANBgkqhkiG9w0BAQEFAAOC
+Ag8AMIICCgKCAgEAspaHtnMeNEsJ5Q1gsh/A+tb8l9ML5pgw6zPx7Y7afvpmp9Ti
+PEqLlGTcHz9FdCSPzEs14gcUeQ7eL1kf5gsuel71pq2yXIKSK+cIp959b+yIuxJc
+NUWvN+/w2k/443d5D6S2Seh+lkYm9EYSm/6zJXYFYW8yxJe8e2W8hQAxH8+xBFao
+rVQl5PQlcyvrEjEv2UlNwzHlDFsKO083WnJPTiHeMtqRprHcKPZajey8toxvQkuE
+Gfct1GEuPJc20UINR12JrZSDoK9+dDkp81goqergmBI7yikxFC513WrU8H37XgR/
+wOoZAAb1j6FPwc6AxtmcHktTZ1tY3Pm81beFuan/wSOhCYsSVNmKosPOkxFI59Xg
+7j/fRlpz9kd6Kq96wkHHpn1YrG2YMU2Bb6ztQ05HZXxNciM9hbK2X/Pb+iENwRPu
+EiVYj7btVinj5RNdkXFEZSeOb/9PpynEwzrN0pgh73ms3dtrOd2HX+hJXW+HaF2C
+3O4+aVr75sy0HY89rubZZm2onO8tKHPPcfnsgWyVn0MBlulq+PCA35fkrVuDuIvf
+924L4VsUgQBTJow+cW42nxoj+DBaLT6SXnR3SrBftuaHzQTDXjxpZxk2fpzDX/wa
+KfJ+GuSq8e8YJht3gIRDgugjFG6/1x6Buen/nYSMyX/hi2T6S7JSP/w3gW0CAwEA
+AaMzMDEwLwYDVR0RBCgwJoIaYXV0b21hdGUuYXV0b21hdGUtZGVtby5jb22CCGF1
+dG9tYXRlMA0GCSqGSIb3DQEBBQUAA4ICAQBPpGRq7rnaqgJDioCC4w0D+04czWEf
+wgd5hmzu0wlzaMncKmv0DxU9G4SZLL4gX1Gdmgb8RwUE7OX3i3k5KE3zg6ozrRiZ
+jQxLDXY5GH4qaJ1Qs+xwBFmMeMItt/OOC9qjDuManrUkveZmy9p6mDi5rVRJBrGB
+1vjrpToSugbaKN064R0JkADIaq8auPW9DMc0f21qehUlqM6Z/DkWNujRlzJMOPtu
+SjzBLh9IQYFRzSI9ZOu9zduZ+8Pkf28L/TWY4XKCjfjdVvd871ihPyQ83Z1X1V0l
+FYVODxaalQzOso831VvVTIu9KP2T5Ux2YU/n5tG4nCik1Nme+RJ1dteap64BKm6L
+144h6NPZZ6982McTfAuaozglRIHLKmgXG0WAozun1u4GGqMN11cjPyhDda5rc0FU
+RZoh0quAN3rkBmx7CE5CtX6PfgUlGgznids4KXQemOIBTrqKful5vYLUZ+WcJ52r
+thBgDgAPnXNRupEcbJCNT5tll4zsDboMELyiA7zeHbVHtkCtLMgOvzLlvZ8bR/pL
+CPDlSlEpTDTtfxrjsiqvWQnhAfpGyuAqHz4E86rTokj1xBYxvyXj51W4wTAuWmiN
+mAeMklxyIaO4WdvHc9A2hbl7T0GxAcH2I/Y8delAgRmf4PxFzUQfQHPHs2NyPYkp
+bAcm6Uns5aQ4DA==
+-----END CERTIFICATE-----"""
+
+      # The TLS RSA key for the load balancer frontend.
+      key = """-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----"""
+
+# License Control service configuration.
+[license_control.v1]
+  [license_control.v1.svc]
+    # The Chef Software provided license token required to run Chef Automate.
+    # This can also be set with the "chef-automate license apply" command.
+    license = ""

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Token is passed by a template variable, which pulls it via `chef-automate admin-token`
+TOK="<%= @token %>"
+
+# Store the ID for the 'admins' team as a variable
+ID=`curl -k -H "api-token: $TOK" https://automate.automate-demo.com/api/v0/auth/teams | jq -r '.teams[] | select(.name =="admins").id'`
+
+# TESTING: Create the 'leela' user
+curl -k -H "api-token: $TOK" -H "Content-Type: application/json" -d '{"name":"Leela", "username":"leela", "password":"workstation!"}' https://automate.automate-demo.com/api/v0/auth/users | jq '.'
+
+# TESTING: View the list of users, ensure Leela is present
+curl -k -H "api-token: $TOK" https://automate.automate-demo.com/api/v0/auth/users | jq '.'
+
+# TESTING: Capture the 'leela' user's ID for use in teem add
+leela_id=`curl -k -H "api-token: $TOK" https://automate.automate-demo.com/api/v0/auth/users/leela | jq .id`
+
+# TESTING: Add 'leela' user to the admins team
+curl -k -H "api-token: $TOK" -H "Content-Type: application/json" -d '{"user_ids":['$leela_id']}' https://automate.automate-demo.com/api/v0/auth/teams/$ID/users
+
+# Adding in workstation users
+
+<% (1..32).each do |ws_num| -%>
+# Create the workstation-<%= ws_num %> user
+curl -k -H "api-token: $TOK" -H "Content-Type: application/json" -d '{"name":"Workstation <%= ws_num %>", "username":"workstation-<%= ws_num %>", "password":"workstation!"}' https://automate.automate-demo.com/api/v0/auth/users
+ws_<%= ws_num %>_id=`curl -k -H "api-token: $TOK" https://automate.automate-demo.com/api/v0/auth/users/workstation-<%= ws_num %> | jq .id`
+curl -k -H "api-token: $TOK" -H "Content-Type: application/json" -d '{"user_ids":['$ws_<%= ws_num %>_id']}' https://automate.automate-demo.com/api/v0/auth/teams/$ID/users
+<% end -%>

@@ -26,7 +26,6 @@ end
 
 git "#{Chef::Config[:file_cache_path]}/bjc" do
   repository 'https://github.com/chef-cft/bjc'
-  revision 'master'
   action :sync
 end
 
