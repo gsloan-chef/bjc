@@ -1,6 +1,9 @@
 default['audit']['fetcher'] = 'chef-server-automate'
 default['audit']['reporter'] = 'chef-server-automate'
 
+# Pin InSpec Version to known good
+default['audit']['inspec_version'] = '2.2.35'
+
 if node['os'] == 'linux'
   default['audit']['profiles'] = [
     {
