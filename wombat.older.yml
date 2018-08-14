@@ -1,0 +1,81 @@
+---
+name: bjc-demo
+# Uncomment domain_prefix if you wish to prepend your generated domain.
+# Ex: The below example would create foo-chef.animals.biz.
+# domain_prefix: foo-
+domain: automate-demo.com
+enterprise: automate-demo
+org: automate
+certs:
+  - automate
+  - chef
+  - ecomacceptance
+  - union
+  - rehearsal
+  - delivered
+ttl: 8
+linux: ubuntu
+version: 5.1.4
+products:
+  chef: stable-13.8.5
+  chef-server: stable-12.17.33
+  chefdk: stable-3.1.0
+  automate: stable-1.8.3
+  push-jobs-server: stable-2.2.6
+  manage: stable-2.5.8
+build-nodes:
+  count: 3
+workstations:
+  platform: windows
+  password: 'RL9@T40BTmXh'
+  count: 1
+infranodes:
+  ecomacceptance:
+    environment: acceptance-automate-demo-automate-bjc-ecommerce-master
+    run_list:
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+  delivered:
+    environment: delivered
+    run_list:
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+  rehearsal:
+    environment: rehearsal
+    run_list:
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+  union:
+    environment: union
+    run_list:
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+conf:
+  key_dir: 'packer/keys'
+  files_dir: 'packer/files'
+  cookbook_dir: 'cookbooks'
+  packer_dir: 'packer'
+  template_dir: 'templates'
+  log_dir: 'packer/logs'
+  stack_dir: stacks
+aws:
+  az: us-west-2c
+  keypair: chef-demo-infra
+  region: us-west-2
+  iam_roles: ['chefDemo']
+  source_image:
+    ubuntu: ami-70b67d10
+    windows: ami-f6d8008e
+    centos: ami-6d1c2007
+azure:
+  location: westus
+  storage_account: bjcimages
+  use_managed_disks: true
+  source_image:
+    ubuntu: Canonical:UbuntuServer:14.04.5-LTS
+    windows: MicrosoftWindowsServer:WindowsServer:2016-Datacenter
+gce:
+  zone: us-east1-b
+  source_image:
+    ubuntu: ubuntu-1404-trusty-v20160809a
+    windows: windows-server-2012-r2-dc-v20160809
